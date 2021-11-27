@@ -1,13 +1,10 @@
 import * as Joi from 'joi';
-import { Module } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { AppConfigService } from './config.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import config from './config';
-/**
- * Import and provide app configuration related classes.
- *
- * @module
- */
+
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,7 +21,7 @@ import config from './config';
       }),
     }),
   ],
-  providers: [ConfigService, AppConfigService],
-  exports: [ConfigService, AppConfigService],
+  providers: [AppConfigService],
+  exports: [AppConfigService],
 })
 export class AppConfigModule {}

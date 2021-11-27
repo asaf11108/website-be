@@ -1,4 +1,4 @@
-import { AppConfigService } from '../../../config/config.service';
+import { AppConfigService } from '../../config/config.service';
 import { Provider } from '@nestjs/common';
 import { createConnection } from 'typeorm';
 
@@ -12,7 +12,7 @@ export const dbPostgresProvider: Provider = {
     password: appConfigService.databasePassword,
     database: appConfigService.databaseName,
     entities: [
-      __dirname + '/' + '../../../models/**/*.entity{.ts,.js}',
+      __dirname + '/' + '../../models/**/*.entity{.ts,.js}',
     ],
     synchronize: true,
     logging: true,

@@ -1,10 +1,10 @@
-import { AppConfigModule } from './../config/config.module';
-import { Module } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 
+@Global()
 @Module({
-  imports: [PassportModule.register({ defaultStrategy: 'jwt' }), AppConfigModule],
+  imports: [PassportModule.register({ defaultStrategy: 'jwt' })],
   providers: [JwtStrategy],
   exports: [PassportModule],
 })
