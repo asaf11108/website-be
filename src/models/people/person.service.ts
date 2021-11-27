@@ -3,10 +3,9 @@ import { Repository } from 'typeorm';
 import { Person } from './person.entity';
 
 @Injectable()
-export class PersonService {
+export class PeopleService {
 
     constructor(@Inject('PERSON_REPOSITORY')
-    private photoRepository: Repository<Person>) {
-        // photoRepository.find().then(console.log)
+    public personRepository: Repository<Person>) {
     }
 }
