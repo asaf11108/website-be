@@ -6,11 +6,7 @@ export const dbPostgresProvider: Provider = {
   provide: 'DATABASE_CONNECTION',
   useFactory: async (appConfigService: AppConfigService) => await createConnection({
     type: 'postgres',
-    host: appConfigService.databaseHost,
-    port: appConfigService.databasePort,
-    username: appConfigService.databaseUser,
-    password: appConfigService.databasePassword,
-    database: appConfigService.databaseName,
+    url: appConfigService.databaseURL,
     entities: [
       __dirname + '/' + '../../models/**/*.entity{.ts,.js}',
     ],
