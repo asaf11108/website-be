@@ -10,11 +10,12 @@ export const dbPostgresProvider: Provider = {
     entities: [
       __dirname + '/' + '../../models/**/*.entity{.ts,.js}',
     ],
-    migrations: ['src/migration/*{.ts,.js}'],
+    migrations: [__dirname + '/' + '../../migration/*{.ts,.js}'],
     cli: {
-      migrationsDir: 'src/migration'
+      migrationsDir: __dirname + '/' + '../../migration'
     },
     logging: true,
+    synchronize: true,
     ssl: true,
     extra: {
       ssl: {

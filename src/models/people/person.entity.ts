@@ -17,4 +17,6 @@ export class Person {
   @Column({ length: 50 })
   gender: string;
 
+  @Column({ type: 'date' })
+  birth_date: string;
 }
