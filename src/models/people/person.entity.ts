@@ -1,5 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum Gender {
+  Male = 'male',
+  Female = 'female'
+}
+
 @Entity('person')
 export class Person {
   @PrimaryGeneratedColumn()
@@ -14,8 +19,8 @@ export class Person {
   @Column({ length: 50 })
   email: string;
 
-  @Column({ length: 50 })
-  gender: string;
+  @Column({ type: 'enum', enum: Gender, default: Gender.Male })
+  gender: Gender;
 
   @Column({ type: 'date' })
   birth_date: string;
