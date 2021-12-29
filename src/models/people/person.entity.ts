@@ -22,6 +22,6 @@ export class Person {
   @Column({ type: 'enum', enum: Gender, default: Gender.Male })
   gender: Gender;
 
-  @Column({ type: 'date' })
-  birth_date: string;
+  @Column({ type: 'date', name: 'birth_date' })
+  birthDate: string;
 }
