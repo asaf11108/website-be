@@ -1,5 +1,5 @@
 import { Gender } from './person.entity';
-import { IsEmail, IsEnum, IsISO8601, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsISO8601, IsNumber, IsNumberString, IsString } from 'class-validator';
 
 export class CreatePersonDto {
     @IsString()
@@ -16,4 +16,9 @@ export class CreatePersonDto {
   
     @IsISO8601()
     readonly birth_date: string;
+}
+
+export class FindPersonParams {
+    @IsNumberString()
+    id: number;
 }
