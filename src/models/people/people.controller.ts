@@ -1,5 +1,5 @@
 import { Person } from './person.entity';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { from, Observable } from 'rxjs';
 import { PeopleService } from './person.service';
