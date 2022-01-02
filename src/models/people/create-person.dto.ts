@@ -1,7 +1,8 @@
 import { Gender } from './person.entity';
 import { IsEmail, IsEnum, IsISO8601, IsNumberString, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
 
-export class CreatePersonDto {
+export class PersonDto {
     @IsString()
     readonly firstName: string;
   
@@ -18,7 +19,9 @@ export class CreatePersonDto {
     readonly birthDate: string;
 }
 
-export class FindPersonParams {
+export class PersonParams {
     @IsNumberString()
     id: number;
 }
+
+export class PersonQuery extends PartialType(PersonDto) {}
