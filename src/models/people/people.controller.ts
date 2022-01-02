@@ -2,7 +2,6 @@ import { Person } from './person.entity';
 import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { PeopleService } from './person.service';
 import { PersonDto, PersonParams, PersonQuery } from './create-person.dto';
 
@@ -10,12 +9,6 @@ import { PersonDto, PersonParams, PersonQuery } from './create-person.dto';
 export class PersonController {
 
     constructor(private peopleService: PeopleService) { }
-
-    @UseGuards(AuthGuard('jwt'))
-    @Get()
-    findAll(): Observable<Person[]> {
-        return from(this.peopleService.personRepository.find());
-    }
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
