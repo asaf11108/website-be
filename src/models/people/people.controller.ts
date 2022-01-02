@@ -12,14 +12,14 @@ export class PersonController {
     constructor(private peopleService: PeopleService) { }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get(':id')
-    findOne(@Param() params: PersonParams): Observable<Person> {
-        return from(this.peopleService.personRepository.findOne(params.id));
+    @Get()
+    findAll(): Observable<Person[]> {
+        return from(this.peopleService.personRepository.find());
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    findAll(@Query() query: PersonQuery): Observable<Person[]> {
+    findQuery(@Query() query: PersonQuery): Observable<Person[]> {
         return from(this.peopleService.personRepository.find({
             where: query
         }));
