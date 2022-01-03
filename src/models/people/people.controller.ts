@@ -1,5 +1,5 @@
 import { Person } from './person.entity';
-import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { from, map, Observable } from 'rxjs';
 import { PeopleService } from './person.service';
@@ -30,5 +30,11 @@ export class PersonController {
     @Patch(':id')
     patch(@Param() params: PersonParams, @Body() personDto: PersonDto) {
         this.peopleService.personRepository.update(params.id, personDto);
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Delete(':id')
+    delete(@Param() params: PersonParams) {
+        this.peopleService.personRepository.delete(params.id);
     }
 }
