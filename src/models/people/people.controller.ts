@@ -1,7 +1,7 @@
 import { Person } from './person.entity';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { from, map, Observable } from 'rxjs';
+import { from, map } from 'rxjs';
 import { PeopleService } from './person.service';
 import { PersonDto, PersonParams, PersonQuery } from './create-person.dto';
 
@@ -12,29 +12,28 @@ export class PersonController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    findQuery(@Query() query: PersonQuery): Observable<Person[]> {
-        return from(this.peopleService.personRepository.find({
+    async findQuery(@Query() query: PersonQuery): Promise<Person[]> {
+        return this.peopleService.personRepository.find({
             where: query
-        }));
+        });
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Post()
-    create(@Body() personDto: PersonDto): Observable<Person> {
-        return from(this.peopleService.personRepository.insert(personDto)).pipe(
-            map(result => ({ id: result.identifiers[0].id, ...personDto }))
-        );
+    async create(@Body() personDto: PersonDto): Promise<Person> {
+        const insertResult = await this.peopleService.personRepository.insert(personDto);
+        return { id: insertResult.identifiers[0].id, ...personDto };
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Patch(':id')
-    patch(@Param() params: PersonParams, @Body() personDto: PersonDto) {
+    async patch(@Param() params: PersonParams, @Body() personDto: PersonDto) {
         this.peopleService.personRepository.update(params.id, personDto);
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Delete(':id')
-    delete(@Param() params: PersonParams) {
+    async delete(@Param() params: PersonParams) {
         this.peopleService.personRepository.delete(params.id);
     }
 }
