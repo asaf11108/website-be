@@ -3,7 +3,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } f
 import { AuthGuard } from '@nestjs/passport';
 import { from, map } from 'rxjs';
 import { PeopleService } from './person.service';
-import { PersonDto, PersonParams, PersonQuery } from './create-person.dto';
+import { PersonDto, PersonParams, PersonQuery } from './person.dto';
 
 @Controller()
 export class PersonController {
