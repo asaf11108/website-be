@@ -1,11 +1,13 @@
 import { Gender } from './person.entity';
-import { IsEmail, IsEnum, IsISO8601, IsNumberString, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumberString, IsString } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class PersonDto {
+    @IsNotEmpty()
     @IsString()
     readonly firstName: string;
   
+    @IsNotEmpty()
     @IsString()
     readonly lastName: string;
   

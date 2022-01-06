@@ -10,10 +10,10 @@ export class Person {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'first_name', length: 50 })
+  @Column({ name: 'first_name', length: 50, nullable: false })
   firstName: string;
 
-  @Column({ name: 'last_name', length: 50 })
+  @Column({ name: 'last_name', length: 50, nullable: false })
   lastName: string;
 
   @Column({ length: 50 })
