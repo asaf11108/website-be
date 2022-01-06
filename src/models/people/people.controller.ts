@@ -1,14 +1,14 @@
 import { Person } from './person.entity';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { from, map } from 'rxjs';
 import { PeopleService } from './person.service';
 import { PersonDto, PersonParams, PersonQuery } from './person.dto';
+import { CarService } from '../car/car.service';
 
 @Controller()
 export class PersonController {
 
-    constructor(private peopleService: PeopleService) { }
+    constructor(private peopleService: PeopleService, private carService: CarService) { }
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
@@ -22,7 +22,8 @@ export class PersonController {
     @Post()
     async create(@Body() personDto: PersonDto): Promise<Person> {
         const insertResult = await this.peopleService.personRepository.insert(personDto);
-        return { id: insertResult.identifiers[0].id, ...personDto };
+        const car = await this.carService.carRepository.findOne(1);
+        return { id: insertResult.identifiers[0].id, ...personDto, car };
     }
 
     @UseGuards(AuthGuard('jwt'))

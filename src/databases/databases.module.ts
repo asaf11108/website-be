@@ -1,3 +1,4 @@
+import { CarProvider } from './../models/car/car.provider';
 import { PersonProvider } from './../models/people/person.provider';
 import { Global, Module, Provider } from '@nestjs/common';
 import { dbPostgresProvider } from './postgres/db-postgres.providers';
@@ -7,7 +8,8 @@ const databaseProviders: Provider[] = [
 ];
 
 const modelsProviders: Provider[] = [
-    PersonProvider
+    PersonProvider,
+    CarProvider
 ];
 
 @Global()
