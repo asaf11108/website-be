@@ -1,4 +1,4 @@
-import { Person } from './../models/people/person.entity';
+import { Person } from '../models/people/person.entity';
 import { endOfDay } from "date-fns";
 import { MigrationInterface, QueryRunner, TableColumn } from "typeorm";
 

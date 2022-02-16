@@ -7,10 +7,14 @@ const routes: Routes = [
   {
     path: 'people',
     module: PeopleModule
+  },
+  {
+    path: 'cars',
+    module: CarModule
   }
 ];
 
-const modules = [PeopleModule, RouterModule.register(routes)];
+const modules = [PeopleModule, CarModule, RouterModule.register(routes)];
 
 @Module({
   imports: modules,

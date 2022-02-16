@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import { Car } from '../car/car.entity';
 
 export enum Gender {
@@ -26,7 +26,7 @@ export class Person {
   @Column({ type: 'date', name: 'birth_date' })
   birthDate: string;
 
-  @OneToOne(() => Car)
-  @JoinColumn()
+  @ManyToOne(() => Car, car => car.id)
+  @JoinColumn({ name: 'car_id' })
   car: Car;
 }
