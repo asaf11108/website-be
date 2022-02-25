@@ -1,6 +1,6 @@
 import { Gender } from './person.entity';
 import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
