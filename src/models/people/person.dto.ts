@@ -1,6 +1,7 @@
 import { Gender } from './person.entity';
-import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumberString, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
+import { Type } from 'class-transformer';
 
 export class PersonDto {
     @IsNotEmpty()
@@ -22,7 +23,8 @@ export class PersonDto {
 }
 
 export class PersonParams {
-    @IsNumberString()
+    @Type(() => Number)
+    @IsNumber()
     id: number;
 }
 

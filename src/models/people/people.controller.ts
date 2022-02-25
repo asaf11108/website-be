@@ -19,6 +19,15 @@ export class PersonController {
     }
 
     @UseGuards(AuthGuard('jwt'))
+    @Get(':id')
+    async findOne(@Param() { id }: PersonParams): Promise<Person> {
+        return this.peopleService.personRepository.findOne({
+            relations: ['car'],
+            where: { id }
+        });
+    }
+
+    @UseGuards(AuthGuard('jwt'))
     @Post()
     async create(@Body() personDto: PersonDto): Promise<Person> {
         const insertResult = await this.peopleService.personRepository.insert(personDto);

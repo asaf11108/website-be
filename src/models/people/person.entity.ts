@@ -26,7 +26,7 @@ export class Person {
   @Column({ type: 'date', name: 'birth_date' })
   birthDate: string;
 
-  @ManyToOne(() => Car, car => car.id)
-  @JoinColumn({ name: 'car_id' })
+  @ManyToOne(() => Car, { nullable: false })
+  @JoinColumn([{ name: 'car_id', referencedColumnName: 'id' }])
   car: Car;
 }
