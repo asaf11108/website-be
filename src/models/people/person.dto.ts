@@ -1,5 +1,5 @@
 import { Gender } from './person.entity';
-import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
@@ -21,6 +21,10 @@ export class PersonDto {
   
     @IsISO8601()
     readonly birthDate: string;
+
+    @IsOptional()
+    @IsNumber()
+    readonly carId?: number
 }
 
 export class PersonParams {

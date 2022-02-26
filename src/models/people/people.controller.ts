@@ -34,7 +34,7 @@ export class PersonController {
     @Post()
     async create(@Body() personDto: PersonDto): Promise<Person> {
         const insertResult = await this.peopleService.personRepository.insert(personDto);
-        const car = await this.carService.carRepository.findOne(1);
+        const car = await this.carService.carRepository.findOne(personDto.carId || 1);
         return { id: insertResult.identifiers[0].id, ...personDto, car };
     }
 
