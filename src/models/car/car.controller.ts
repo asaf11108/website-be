@@ -4,13 +4,13 @@ import { AuthGuard } from '@nestjs/passport';
 import { CarService } from './car.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @ApiTags('cars')
 @Controller()
 export class CarController {
 
     constructor(private carService: CarService) { }
 
-    @ApiBearerAuth()
     @UseGuards(AuthGuard('jwt'))
     @Get()
     async find(): Promise<Car[]> {
