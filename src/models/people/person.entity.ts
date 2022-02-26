@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import { Car } from '../car/car.entity';
 
@@ -19,7 +20,8 @@ export class Person {
 
   @Column({ length: 50 })
   email: string;
-
+  
+  @ApiProperty({ enum: Gender, enumName: 'Gender' })
   @Column({ type: 'enum', enum: Gender, default: Gender.Male })
   gender: Gender;
 

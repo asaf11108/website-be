@@ -1,6 +1,6 @@
 import { Gender } from './person.entity';
 import { IsEmail, IsEnum, IsISO8601, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { PartialType } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
 export class PersonDto {
@@ -15,6 +15,7 @@ export class PersonDto {
     @IsEmail()
     readonly email: string;
   
+    @ApiProperty({ enum: Gender, enumName: 'Gender' })
     @IsEnum(Gender)
     readonly gender: Gender;
   
